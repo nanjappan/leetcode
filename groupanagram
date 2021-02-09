@@ -1,0 +1,39 @@
+Solution to problem : https://leetcode.com/problems/group-anagrams/
+
+
+class Solution {
+   
+   public List<List<String>> groupAnagrams(String[] strs) {
+ 
+        HashMap<String, ArrayList<String>> anagrams = new HashMap<String, ArrayList<String>>();
+        
+        for (String str: strs)
+        {
+            
+            char[] ar = str.toCharArray();
+            Arrays.sort(ar);
+            String sorted = new String (ar);
+            
+            boolean anagramsFound = false;
+            if (anagrams.containsKey(sorted))
+            {
+                anagrams.get(sorted).add(str);
+            }
+            else
+            {
+                ArrayList<String> anagram = new ArrayList();
+                anagram.add(str);
+                
+                anagrams.put(sorted,anagram);
+            }
+            
+        }
+         
+        List<List<String>> res = new ArrayList<List<String>>();
+        for (ArrayList anagram : anagrams.values())
+            res.add(anagram);
+                                    
+        return res;
+            
+    }
+}
